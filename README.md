@@ -41,7 +41,7 @@ From the perspective of content, a message can be classified as
 
 As a type of user message, text message and image message should have plenty of commonalities, such as a user avatar and the same ui wrapper of content. It seems hoc wrappers like `withUserMessageContainer` and `withSystemMessageContainer` could be a good choice.
 
-Form the perspective of flow direction, a message can be classified as
+From the perspective of flow direction, a message can be classified as
 
 - flow in
 - flow out
@@ -65,7 +65,7 @@ export interface IMessage_Audio extends IUserMessage {
 }
 ```
 
-Second, you should define a `ContentAudio` component to describe how to render a audio conent.
+Second, you should define a `ContentAudio` component to describe how to render an audio content.
 
 ```typescript
 export default function ContentAudio({ content }: IProps) {
@@ -97,9 +97,9 @@ First, define a hoc `withContextMenu`
 
 ```typescript
 export default function withContextMenu(WrappedComponent) {
-  return function (props: IProps) {
+  return function ({ onContextMenu }: IProps) {
     return (
-      <div onContextMenu={props.onContextMenu}>
+      <div onContextMenu={onContextMenu}>
         <WrappedComponent {...props} />
       </div>
     )
