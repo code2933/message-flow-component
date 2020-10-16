@@ -1,31 +1,57 @@
+import { Button, Card, Col, Row } from 'antd'
 import React, { useState } from 'react'
-import logo from './logo.svg'
 import './App.css'
+import ChatWindow from './components/ChatWindow'
+import { Message } from './interfaces/message'
+import {
+  generateTextMessageIn,
+  generateTextMessageOut,
+  generateImageMessageIn,
+  generateImageMessageOut,
+  generateSystemMessage,
+} from './utils/messageGenerator'
 
-function App() {
-  const [count, setCount] = useState(0)
+const ACTIONS = [
+  {
+    name: 'Receive a text message',
+    generator: generateTextMessageIn,
+  },
+  {
+    name: 'Send a text message',
+    generator: generateTextMessageOut,
+  },
+  {
+    name: 'Receive an image message',
+    generator: generateImageMessageIn,
+  },
+  {
+    name: 'Send an image message',
+    generator: generateImageMessageOut,
+  },
+  {
+    name: 'Receive a system message',
+    generator: generateSystemMessage,
+  },
+]
+
+export default function App() {
+  const [messageList, setMessageList] = useState<Message[]>([])
+  const appendMessage = (message: Message) => setMessageList([...messageList, message])
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>Hello Vite + React!</p>
-        <p>
-          <button onClick={() => setCount(count => count + 1)}>count is: {count}</button>
-        </p>
-        <p>
-          Edit <code>App.tsx</code> and save to test HMR updates.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Row className="app" gutter={40}>
+      <Col span={16} className="col">
+        <ChatWindow messageList={messageList} />
+      </Col>
+      <Col span={8} className="col">
+        <div className="actions">
+          {ACTIONS.map(action => (
+            <div className="item" key={action.name}>
+              <Button onClick={() => appendMessage(action.generator())}>{action.name}</Button>
+            </div>
+          ))}
+        </div>
+      </Col>
+    </Row>
   )
 }
-
-export default App
