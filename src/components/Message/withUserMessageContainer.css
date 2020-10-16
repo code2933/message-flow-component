@@ -1,0 +1,47 @@
+.user-message-container {
+  min-height: 60px;
+  margin: 20px 0;
+}
+
+.user-message-container .container-wrapper {
+  display: inline-block;
+  width: 60%;
+}
+
+.user-message-container .container {
+  display: flex;
+  align-items: stretch;
+}
+
+/** flow right **/
+.user-message-container.right {
+  text-align: right;
+}
+
+.user-message-container.right .container {
+  flex-direction: row-reverse;
+}
+/** *********** */
+
+.user-message-container .avatar-container {
+  flex: 0 0 60px;
+}
+
+.user-message-container .content-container {
+  flex: 1 1 100px;
+}
+
+.user-message-container .content-container .info {
+  font-size: smaller;
+  line-height: 1;
+  margin-bottom: 4px;
+  color: #666;
+}
+
+.user-message-container .content-container .content {
+  display: inline-block;
+  text-align: left;
+  padding: 4px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}

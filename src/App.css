@@ -1,0 +1,17 @@
+.app {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+.app .col {
+  height: 100%;
+}
+
+.app .actions {
+  padding: 20px;
+  background-color: #fff;
+}
+
+.app .actions .item {
+  margin-bottom: 20px;
+}
